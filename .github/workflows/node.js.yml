@@ -10,13 +10,8 @@ jobs:
     
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        exclude:
-          - os: macos-latest
-            node-version: 12.x
-
+        os: [ubuntu-latest]
+        node: [12]
     steps:
       - name: my first step
         env:
@@ -25,3 +20,6 @@ jobs:
           MIDDLE_NAME: Charles Junior
           LAST_NAME: Triolo
         run: echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME
+      - name: my second step
+        if: success()
+        run: echo "The previous has finished successfully"
